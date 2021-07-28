@@ -1,0 +1,26 @@
+Todo:
+Display a vertical list of videos
+On clicking a video, play it in full screen
+
+Constraints:
+Videos in list must play on becoming visible
+Videos in list must play without sound
+Upon clicking, videos must continue from current position in full screen
+Videos in full screen must have sound
+Use shared transition to animate movement from clicked video to showing it in full screen
+
+Given:
+video source - https://gist.github.com/jsturgis/3b19447b304616f18657
+
+
+Dependencies:
+Navigation components
+ViewModel
+LiveData
+Hilt
+AndroidX support
+
+Test cases:
+Is the correct item opened?
+Is it playing from correct position?
+Does it play all items?

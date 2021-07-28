@@ -1,0 +1,14 @@
+*.iml
+.gradle
+/local.properties
+.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+app/.gitignore
+app/src/androidTest/java/com/harisewak/verticalvideos/ExampleInstrumentedTest.kt
+app/src/test/java/com/harisewak/verticalvideos/ExampleUnitTest.kt
+gradle.properties
