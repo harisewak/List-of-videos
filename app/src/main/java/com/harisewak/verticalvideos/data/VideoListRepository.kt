@@ -1,14 +1,12 @@
 package com.harisewak.verticalvideos.data
 
-import android.content.Context
-import com.harisewak.verticalvideos.util.loadVideosFromAssets
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
+import javax.inject.Named
 
-class VideoListRepository(private val context: Context) {
+class VideoListRepository @Inject constructor(@Named("default_video_source") private val source: VideoSource) {
 
     fun getListOfVideos(): List<Video> {
-        return loadVideosFromAssets(context)
+        return source.getVideos()
     }
 
 }
