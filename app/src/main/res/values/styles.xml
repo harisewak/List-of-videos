@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TitleTheme" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SubTitleTheme" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/text_size_subtitle</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+
+</resources>

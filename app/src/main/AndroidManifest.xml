@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.harisewak.verticalvideos">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".VideoListApplication"
         android:allowBackup="true"
@@ -11,6 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Verticalvideos"
-        tools:ignore="AllowBackup" />
+        tools:ignore="AllowBackup">
+
+        <activity
+            android:name=".view.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.Verticalvideos.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
 
 </manifest>

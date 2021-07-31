@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/VideoListFragment">
+
+    <fragment
+        android:id="@+id/VideoListFragment"
+        android:name="com.harisewak.verticalvideos.view.VideoListFragment"
+        android:label="@string/video_list_fragment_label"/>
+</navigation>

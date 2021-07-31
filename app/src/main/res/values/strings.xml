@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">verticalvideos</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="video_list_fragment_label">Video List Fragment</string>
+    <string name="video_detail_fragment_label">Video Detail Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="content_description_iv_thumbnail">Shows thumbail of video</string>
+
 </resources>
