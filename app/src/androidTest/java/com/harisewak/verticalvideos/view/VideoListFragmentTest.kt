@@ -7,6 +7,7 @@ import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth.assertThat
 import com.harisewak.verticalvideos.R
 import com.harisewak.verticalvideos.launchFragmentInHiltContainer
+import com.harisewak.verticalvideos.util.debug
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -35,7 +36,8 @@ class VideoListFragmentTest {
     fun onViewCreated_failIfVideoListNotDisplayed() {
         launchFragmentInHiltContainer<VideoListFragment> {
             val videoCount = getLoadedVideoCount()
-            assertThat(videoCount == 0).isFalse()
+            debug("videoCount: $videoCount")
+            assertThat(videoCount).isNotEqualTo(0)
         }
     }
 
@@ -43,10 +45,11 @@ class VideoListFragmentTest {
         view!!.findViewById<RecyclerView>(R.id.rv_video_list).adapter!!.itemCount
 
     @Test
-    fun onViewCreated_failIfVideoCountIsLessThan13() {
+    fun onViewCreated_failIfAllVideosAreNotDisplayed() {
         launchFragmentInHiltContainer<VideoListFragment> {
             val videoCount = getLoadedVideoCount()
-            assertThat(videoCount < TOTAL_VIDEOS).isFalse()
+            debug("videoCount: $videoCount")
+            assertThat(videoCount).isEqualTo(TOTAL_VIDEOS)
         }
     }
 
