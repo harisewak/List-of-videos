@@ -39,10 +39,11 @@ jobs:
       - store_test_results:
           path: ~/project/test-reports
 
+      # todo Commenting deployment for now as CI fails at this step. If needed, enable and fix breakage
       # Testing deployment, DO NOT share token as it is.
-      - firebase-deploy/deploy:
-          token: '1//0gCUgH4-N5rWzCgYIARAAGBASNwF-L9IrIiLrru138rt9j-QN_ARFNk-KagqpI_ynLuYulQo5Kb0xB62GelGvicyQpKzyh5yqiLo'
-          alias: verticalvideos-7d274
+#      - firebase-deploy/deploy:
+#          token: '1//0gCUgH4-N5rWzCgYIARAAGBASNwF-L9IrIiLrru138rt9j-QN_ARFNk-KagqpI_ynLuYulQo5Kb0xB62GelGvicyQpKzyh5yqiLo'
+#          alias: verticalvideos-7d274
 
 workflows:
   # Below is the definition of your workflow.
