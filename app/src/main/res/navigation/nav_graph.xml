@@ -7,5 +7,25 @@
     <fragment
         android:id="@+id/VideoListFragment"
         android:name="com.harisewak.verticalvideos.view.VideoListFragment"
-        android:label="@string/video_list_fragment_label"/>
+        android:label="@string/video_list_fragment_label">
+
+        <action
+            android:id="@+id/action_VideoListFragment_to_videoDetailFragment"
+            app:destination="@id/videoDetailFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoDetailFragment"
+        android:name="com.harisewak.verticalvideos.view.VideoDetailFragment"
+        android:label="VideoDetailFragment">
+
+        <argument
+            android:name="video"
+            app:argType="com.harisewak.verticalvideos.data.Video"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
 </navigation>

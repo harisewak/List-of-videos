@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.harisewak.verticalvideos.data.Video
 import com.harisewak.verticalvideos.databinding.FragmentVideoListBinding
-import com.harisewak.verticalvideos.databinding.ItemVideosBinding
+import com.harisewak.verticalvideos.databinding.ItemVideoBinding
 import com.harisewak.verticalvideos.viewmodel.VideoListViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,7 +66,7 @@ class VideoListFragment : Fragment() {
         fun submitList(list: List<Video>) = asyncDiffer.submitList(list)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            VideoViewHolder(ItemVideosBinding.inflate(LayoutInflater.from(parent.context)))
+            VideoViewHolder(ItemVideoBinding.inflate(LayoutInflater.from(parent.context)))
 
         override fun onBindViewHolder(holder: VideoViewHolder, position: Int) =
             holder.bind(asyncDiffer.currentList[position])
@@ -73,13 +74,22 @@ class VideoListFragment : Fragment() {
         override fun getItemCount() = asyncDiffer.currentList.size
 
 
-        inner class VideoViewHolder(private val binding: ItemVideosBinding) :
+        inner class VideoViewHolder(private val binding: ItemVideoBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
             fun bind(video: Video) {
                 binding.tvTitle.text = video.title
                 binding.tvSubtitle.text = video.subtitle
-//                binding.ivThumbnail.load(video.thumb)
+                binding.root.setOnClickListener {
+                    val action =
+                        VideoListFragmentDirections.actionVideoListFragmentToVideoDetailFragment(
+                            video
+                        )
+                    findNavController()
+                        .navigate(
+                            action
+                        )
+                }
             }
 
         }
@@ -87,5 +97,3 @@ class VideoListFragment : Fragment() {
     }
 
 }
-
-fun ImageView.load(imageUrl: String) = Picasso.get().load(imageUrl).into(this)
