@@ -37,7 +37,7 @@ jobs:
 
       # Upload test results
       - store_test_results:
-        path: ~/project/test-reports
+          path: ~/project/test-reports
 
       # Testing deployment, DO NOT share token as it is.
       - firebase-deploy/deploy:
