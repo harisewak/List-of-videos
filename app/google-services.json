@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438399109223",
+    "project_id": "verticalvideos-7d274",
+    "storage_bucket": "verticalvideos-7d274.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438399109223:android:10404df239b5f690f5ecc2",
+        "android_client_info": {
+          "package_name": "com.harisewak.verticalvideos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438399109223-79tvs7u9qmo0mdf16nccfms7r57khd1c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSgmElT_ZIncz7zwDKPxtNm_9WTAQ8d-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438399109223-79tvs7u9qmo0mdf16nccfms7r57khd1c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
