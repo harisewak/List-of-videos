@@ -11,9 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.harisewak.verticalvideos.data.Video
 import com.harisewak.verticalvideos.databinding.FragmentVideoListBinding
 import com.harisewak.verticalvideos.databinding.ItemVideoBinding
+import com.harisewak.verticalvideos.util.debug
 import com.harisewak.verticalvideos.viewmodel.VideoListViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +32,8 @@ class VideoListFragment : Fragment() {
 
     private val adapter = VideoListAdapter()
 
+    @Inject
+    lateinit var player: SimpleExoPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +58,8 @@ class VideoListFragment : Fragment() {
 
     inner class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.VideoViewHolder>() {
 
+        private var playFirstVideo = false
+
         private val diffCallback = object : DiffUtil.ItemCallback<Video>() {
 
             override fun areItemsTheSame(oldItem: Video, newItem: Video) = oldItem == newItem
@@ -63,7 +70,12 @@ class VideoListFragment : Fragment() {
 
         private val asyncDiffer = AsyncListDiffer(this, diffCallback)
 
-        fun submitList(list: List<Video>) = asyncDiffer.submitList(list)
+        fun submitList(list: List<Video>) = asyncDiffer.submitList(list, object: Runnable {
+            override fun run() {
+                playFirstVideo = true
+            }
+
+        })
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             VideoViewHolder(ItemVideoBinding.inflate(LayoutInflater.from(parent.context)))
@@ -78,17 +90,32 @@ class VideoListFragment : Fragment() {
             RecyclerView.ViewHolder(binding.root) {
 
             fun bind(video: Video) {
-                binding.tvTitle.text = video.title
-                binding.tvSubtitle.text = video.subtitle
-                binding.root.setOnClickListener {
-                    val action =
-                        VideoListFragmentDirections.actionVideoListFragmentToVideoDetailFragment(
-                            video
-                        )
-                    findNavController()
-                        .navigate(
-                            action
-                        )
+
+                with(binding) {
+
+                    tvTitle.text = video.title
+                    tvSubtitle.text = video.subtitle
+
+                    if (adapterPosition == 0 && playFirstVideo) {
+                        debug("adapterPosition == 0 && playFirstVideo")
+                        playFirstVideo = false
+                        playerView.player = player
+                        val mediaItem = MediaItem.fromUri(video.videoUrl)
+                        player.setMediaItem(mediaItem)
+                        player.prepare()
+                        player.play()
+                    }
+
+                    root.setOnClickListener {
+                        val action =
+                            VideoListFragmentDirections.actionVideoListFragmentToVideoDetailFragment(
+                                video
+                            )
+                        findNavController()
+                            .navigate(
+                                action
+                            )
+                    }
                 }
             }
 
