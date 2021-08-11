@@ -6,6 +6,6 @@ const val TAG = "VerticalVideosApp"
 
 const val ENABLE = true
 
-fun debug(message: String) {
+fun logd(message: String) {
     if (ENABLE) Log.d(TAG, message)
 }

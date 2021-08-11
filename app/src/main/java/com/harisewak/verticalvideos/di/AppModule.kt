@@ -1,7 +1,6 @@
 package com.harisewak.verticalvideos.di
 
 import android.content.Context
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.harisewak.verticalvideos.data.DefaultVideoSource
 import com.harisewak.verticalvideos.data.VideoListRepository
 import com.harisewak.verticalvideos.data.VideoSource
@@ -16,7 +15,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class AppModule {
+object AppModule {
 
     @Provides
     @Singleton
@@ -29,10 +28,5 @@ class AppModule {
     fun provideVideoListViewModel(repository: VideoListRepository) =
         VideoListViewModel.Companion.VideoListViewModelFactory(repository)
             .create(VideoListViewModel::class.java)
-
-    @Provides
-    @Singleton
-    fun provideExoPlayer(@ApplicationContext context: Context) =
-        SimpleExoPlayer.Builder(context).build()
 
 }
