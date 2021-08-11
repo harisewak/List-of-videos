@@ -2,40 +2,41 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/margin_8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_8dp"
     app:cardCornerRadius="@dimen/card_corners">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:padding="@dimen/padding_8dp">
-
-        <!-- Using layout_width="0dp" doesn't work for container. Hence using match_parent as quickfix -->
 
         <FrameLayout
             android:id="@+id/container"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="200dp"
+            android:transitionName="@string/video_transition"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:scaleType="centerCrop"
+                android:outlineProvider="background"
+                android:background="@drawable/placeholder_gradient"
                 android:id="@+id/iv_thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_media_play"
                 android:contentDescription="@string/content_description_iv_thumbnail" />
 
-            <com.google.android.exoplayer2.ui.StyledPlayerView
-                android:id="@+id/player_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                 />
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -61,6 +62,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:text="This is a subtitle and it can be very long.... keep watching maybe two lines and it can keep going until then but after that.. it will have to stop because there is a limit" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

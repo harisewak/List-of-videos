@@ -8,14 +8,18 @@ data class Video(
     val videoUrl: String,
     val subtitle: String,
     val thumb: String,
-    val title: String
+    val title: String,
+    var curPosition: Long = 0L,
+    var isPlaying: Boolean = false
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readLong(),
+        parcel.readByte() != 0.toByte()
     ) {
     }
 
@@ -25,6 +29,8 @@ data class Video(
         parcel.writeString(subtitle)
         parcel.writeString(thumb)
         parcel.writeString(title)
+        parcel.writeLong(curPosition)
+        parcel.writeByte(if (isPlaying) 1 else 0)
     }
 
     override fun describeContents(): Int {
@@ -40,4 +46,5 @@ data class Video(
             return arrayOfNulls(size)
         }
     }
+
 }

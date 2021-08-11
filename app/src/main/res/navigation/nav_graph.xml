@@ -11,8 +11,7 @@
 
         <action
             android:id="@+id/action_VideoListFragment_to_videoDetailFragment"
-            app:destination="@id/videoDetailFragment"
-            />
+            app:destination="@id/videoDetailFragment" />
 
     </fragment>
 
@@ -23,9 +22,10 @@
 
         <argument
             android:name="video"
+            android:defaultValue="@null"
             app:argType="com.harisewak.verticalvideos.data.Video"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
 
     </fragment>
+
 </navigation>

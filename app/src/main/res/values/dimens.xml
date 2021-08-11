@@ -6,4 +6,5 @@
     <dimen name="text_size_subtitle">12sp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="placeholder_corner_radius">4dp</dimen>
 </resources>
